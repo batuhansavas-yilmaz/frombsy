@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hayatı Kolaylaştıran Ürünler</title>
+<meta name="description" content="Hayatı Kolaylaştıran Ürünler">
+<meta name="theme-color" content="#050a18">
+<link rel="icon" href="assets/logo.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Silkscreen:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+  :root {
+    --night: #050a18;
+    --bright: #f3f6ff;
+    --muted: rgba(222, 232, 255, .64);
+    --line: rgba(140, 170, 255, .13);
+    --blue: #6f9bff;
+    --blue-soft: rgba(111, 155, 255, .14);
+    --blue-border: rgba(111, 155, 255, .3);
+  }
+  body {
+    background:
+      radial-gradient(1100px 620px at 50% -240px, rgba(55, 92, 214, .55), transparent 68%),
+      radial-gradient(700px 500px at 92% 28%, rgba(64, 120, 255, .12), transparent 65%),
+      radial-gradient(800px 500px at -10% 70%, rgba(30, 60, 150, .16), transparent 65%),
+      linear-gradient(160deg, #0a1638 0%, #050a18 52%, #081127 100%);
+    background-attachment: fixed;
+    color: var(--bright);
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, .026) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, .026) 1px, transparent 1px);
+    background-size: 76px 76px;
+    pointer-events: none;
+  }
+  .wrap { position: relative; z-index: 1; width: min(1160px, calc(100% - 48px)); margin: 0 auto; }
+
+  /* Header */
+  .top {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    background: rgba(5, 10, 24, .72);
+    border-bottom: 1px solid var(--line);
+    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(18px);
+  }
+  .top-inner { height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .brand { display: flex; align-items: center; gap: 11px; text-decoration: none; color: #fff; }
+  .brand img { width: 36px; height: 36px; }
+  .brand span { display: flex; flex-direction: column; line-height: 1.2; }
+  .brand strong { font-size: 13px; font-weight: 800; letter-spacing: -.01em; }
+  .brand small {
+    margin-top: 3px;
+    font-size: 8.5px;
+    font-weight: 800;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: rgba(200, 215, 255, .48);
+  }
+  .top-nav { display: flex; align-items: center; gap: 6px; }
+  .top-nav a {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    height: 38px;
+    padding: 0 14px;
+    border-radius: 999px;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 12.5px;
+    font-weight: 700;
+    transition: color .15s, background .15s;
+  }
+  .top-nav a:hover { color: #fff; background: rgba(111, 155, 255, .08); }
+  .top-nav a.gh { border: 1px solid var(--line); background: rgba(111, 155, 255, .06); color: #fff; }
+  .top-nav a.gh:hover { border-color: var(--blue-border); background: var(--blue-soft); }
+  .top-nav svg { width: 14px; height: 14px; }
+
+  /* Hero */
+  .hero { position: relative; padding: 84px 0 74px; text-align: center; }
+  .hero-inner { display: flex; flex-direction: column; align-items: center; }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 13px;
+    border: 1px solid var(--blue-border);
+    border-radius: 999px;
+    background: var(--blue-soft);
+    color: #b9cdff;
+    font-size: 9.5px;
+    font-weight: 800;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+  }
+  .hero-badge i { width: 6px; height: 6px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 4px rgba(111, 155, 255, .13); }
+  .logo-orbit {
+    position: relative;
+    width: 180px;
+    height: 180px;
+    margin-top: 24px;
+    display: grid;
+    place-items: center;
+  }
+  .logo-orbit::before {
+    content: "";
+    position: absolute;
+    inset: 8px;
+    border: 1px solid rgba(140, 170, 255, .18);
+    border-radius: 50%;
+    box-shadow: 0 0 70px rgba(111, 155, 255, .16);
+  }
+  .orbit-ring {
+    position: absolute;
+    inset: 0;
+    border: 1px dashed rgba(160, 190, 255, .24);
+    border-radius: 50%;
+    animation: orbit 46s linear infinite;
+  }
+  .orbit-ring::before,
+  .orbit-ring::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+  }
+  .orbit-ring::before {
+    width: 7px;
+    height: 7px;
+    top: -3px;
+    left: 50%;
+    margin-left: -3.5px;
+    background: #cfe0ff;
+    box-shadow: 0 0 12px rgba(160, 190, 255, .9);
+  }
+  .orbit-ring::after {
+    width: 5px;
+    height: 5px;
+    bottom: 18px;
+    right: 14px;
+    background: #7fe4d8;
+    box-shadow: 0 0 10px rgba(127, 228, 216, .9);
+  }
+  @keyframes orbit { to { transform: rotate(360deg); } }
+  .hero-logo {
+    width: 108px;
+    height: 108px;
+    filter: drop-shadow(0 0 28px rgba(111, 155, 255, .55)) drop-shadow(0 18px 30px rgba(0, 0, 0, .45));
+  }
+  .hero-title {
+    margin-top: 30px;
+    color: var(--bright);
+    font-size: clamp(32px, 6.2vw, 76px);
+    line-height: 1.1;
+    word-spacing: .12em;
+    letter-spacing: .045em;
+    text-shadow: 0 0 52px rgba(111, 155, 255, .32);
+  }
+  .hero-title .word { display: inline; white-space: nowrap; }
+  .hero-title .s-ced { position: relative; display: inline-block; }
+  .hero-title .s-ced .ced { position: absolute; left: 50%; top: 0; transform: translateX(-50%); }
+  .hero-sub {
+    max-width: 520px;
+    margin: 24px 0 0;
+    color: var(--muted);
+    font-size: clamp(14px, 1.4vw, 16px);
+    line-height: 1.8;
+  }
+  .hero-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 32px; }
+  .btn-light, .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    height: 46px;
+    padding: 0 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .btn-light { border: 0; background: var(--card); color: #000; box-shadow: var(--shadow-card); }
+  .btn-light:hover { background-image: linear-gradient(rgba(0, 0, 0, .06), rgba(0, 0, 0, .06)); }
+  .btn-ghost { border: 1px solid var(--blue-border); background: rgba(111, 155, 255, .05); color: #dbe6ff; }
+  .btn-ghost:hover { border-color: rgba(140, 176, 255, .6); background: rgba(111, 155, 255, .12); }
+  .btn-light svg, .btn-ghost svg { width: 15px; height: 15px; }
+  .btn-ghost .ripple { background: rgba(160, 190, 255, .25); }
+
+  /* Apps */
+  .apps { position: relative; padding: 36px 0 80px; scroll-margin-top: 80px; }
+  .sec-head { max-width: 600px; margin: 0 auto 42px; text-align: center; }
+  .eyebrow {
+    margin: 0 0 14px;
+    font-size: 9.5px;
+    font-weight: 800;
+    letter-spacing: .24em;
+    text-transform: uppercase;
+    color: #9cb8ff;
+  }
+  .sec-head h2 { margin: 0; font-size: clamp(26px, 3vw, 38px); letter-spacing: -.035em; line-height: 1.15; color: var(--bright); }
+  .sec-sub { margin: 13px 0 0; color: var(--muted); font-size: 14px; line-height: 1.7; }
+  .tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+  .tile {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 26px 20px 24px;
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    background:
+      radial-gradient(360px 160px at 50% -40px, rgba(111, 155, 255, .13), transparent 75%),
+      linear-gradient(180deg, rgba(23, 38, 82, .48), rgba(7, 13, 31, .66));
+    text-decoration: none;
+    color: inherit;
+    text-align: center;
+    transition: border-color .2s, transform .2s, box-shadow .2s;
+  }
+  .tile:hover {
+    border-color: var(--blue-border);
+    transform: translateY(-4px);
+    box-shadow: 0 26px 60px rgba(20, 45, 120, .32);
+  }
+  .tile-index {
+    align-self: flex-start;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--pixel);
+    font-size: 8px;
+    letter-spacing: .08em;
+    color: rgba(205, 220, 255, .36);
+  }
+  .tile-index i { width: 16px; height: 1px; background: rgba(160, 190, 255, .24); }
+  .tile .icon-box {
+    --tile-bg: #232e50;
+    --tile-hover: rgba(255, 255, 255, .08);
+    --ripple: rgba(180, 205, 255, .22);
+    --focus: #9cb8ff;
+    margin-top: 26px;
+  }
+  @media (hover: hover) {
+    .tile:hover .icon-box::after { opacity: 1; }
+  }
+  .tile:active .icon-box { transform: scale(.985); }
+  .tile:focus-visible { outline: none; }
+  .tile:focus-visible .icon-box { outline: 2px solid var(--focus); outline-offset: 3px; }
+  .tile .app-label { margin-top: 20px; font-size: 21px; color: var(--bright); }
+  .tile-desc { margin-top: 9px; max-width: 260px; color: var(--muted); font-size: 12.5px; line-height: 1.65; }
+  .tile-open {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: auto;
+    padding-top: 18px;
+    color: #b9cdff;
+    font-size: 9.5px;
+    font-weight: 800;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+  }
+  .tile-open svg { width: 13px; height: 13px; transition: transform .15s; }
+  .tile:hover .tile-open svg { transform: translate(2px, -2px); }
+
+  /* About */
+  .about { position: relative; border-top: 1px solid var(--line); padding: 72px 0 84px; scroll-margin-top: 80px; }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+  .about h2 { margin: 0; font-size: clamp(24px, 2.8vw, 36px); letter-spacing: -.035em; line-height: 1.25; }
+  .about h2 span { color: #a8c2ff; }
+  .about-copy p { margin: 0 0 14px; color: var(--muted); font-size: 13.5px; line-height: 1.8; }
+  .about-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-bottom: 1px solid var(--blue-border);
+    padding-bottom: 4px;
+  }
+  .about-link:hover { color: #b9cdff; }
+  .about-link svg { width: 14px; height: 14px; }
+
+  footer { position: relative; border-top: 1px solid var(--line); }
+  .foot-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 24px 0;
+    color: rgba(205, 220, 255, .42);
+    font-size: 11px;
+  }
+  .foot-inner img { width: 24px; height: 24px; }
+  .foot-left { display: flex; align-items: center; gap: 9px; color: rgba(240, 245, 255, .78); font-weight: 700; }
+  .foot-inner a { color: rgba(205, 220, 255, .58); text-decoration: none; font-weight: 600; }
+  .foot-inner a:hover { color: #fff; }
+
+  @media (max-width: 860px) {
+    .tiles { grid-template-columns: 1fr; grid-auto-rows: 1fr; max-width: 420px; margin: 0 auto; gap: 12px; }
+    .tile {
+      display: grid;
+      grid-template-columns: 76px minmax(0, 1fr);
+      grid-template-rows: auto 1fr auto;
+      grid-template-areas:
+        "icon label"
+        "icon desc"
+        "icon open";
+      align-items: start;
+      column-gap: 16px;
+      padding: 16px;
+      border-radius: 18px;
+      text-align: left;
+    }
+    .tile-index { display: none; }
+    .tile .icon-box {
+      grid-area: icon;
+      align-self: center;
+      width: 76px;
+      height: 76px;
+      margin-top: 0;
+      padding: 6px;
+      border-radius: 16px;
+    }
+    .tile .icon-box img, .tile .icon-box svg { border-radius: 11px; }
+    .tile .app-label { grid-area: label; margin-top: 0; font-size: 17px; }
+    .tile-desc { grid-area: desc; margin-top: 2px; max-width: none; font-size: 11px; line-height: 1.4; }
+    .tile-open { grid-area: open; align-self: end; margin-top: 6px; padding-top: 0; }
+    .about-grid { grid-template-columns: 1fr; gap: 20px; }
+    .hero { padding: 64px 0 56px; }
+    .top-nav a:not(.gh) { display: none; }
+    .top-inner { height: 66px; }
+  }
+  @media (max-width: 560px) {
+    .wrap { width: calc(100% - 32px); }
+    .logo-orbit { width: 150px; height: 150px; }
+    .logo-orbit .hero-logo { width: 92px; height: 92px; }
+    .hero-sub { font-size: 13.5px; }
+    .apps { padding-bottom: 60px; }
+    .about { padding: 54px 0 62px; }
+    .foot-inner { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .btn-light, .btn-ghost { width: 100%; }
+  }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap top-inner">
+    <a class="brand" href="#" aria-label="Ana sayfa">
+      <img src="assets/logo.png" alt="">
+      <span>
+        <strong>Hayatı Kolaylaştıran Ürünler</strong>
+        <small>From B.S.Y.</small>
+      </span>
+    </a>
+    <nav class="top-nav" aria-label="Ana menü">
+      <a href="#apps">Uygulamalar</a>
+      <a href="#about">Hakkında</a>
+      <a class="gh" href="https://github.com/batuhansavas-yilmaz" target="_blank" rel="noopener">
+        GitHub
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+      </a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <p class="hero-badge"><i></i>TARAYICINIZDA ÇALIŞAN UYGULAMALAR</p>
+      <div class="logo-orbit">
+        <span class="orbit-ring" aria-hidden="true"></span>
+        <img class="hero-logo" src="assets/logo.png" alt="To Make Life Easier logosu" width="108" height="108">
+      </div>
+      <h1 class="tagline hero-title" aria-label="HAYATI KOLAYLAŞTIRAN ÜRÜNLER"><span aria-hidden="true">HAYATI <span class="word">KOLAYLA<span class="s-ced">S<span class="ced">¸</span></span>TIRAN</span> ÜRÜNLER</span></h1>
+      <div class="hero-actions">
+        <a class="btn-light btn-ripple" href="#apps">
+          Uygulamaları gör
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v16m0 0-6-6m6 6 6-6"/></svg>
+        </a>
+        <a class="btn-ghost btn-ripple" href="https://github.com/batuhansavas-yilmaz" target="_blank" rel="noopener" data-ripple="light">
+          GitHub profilim
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="apps" id="apps">
+    <div class="wrap">
+      <div class="sec-head">
+                <h2>Küçük araçlar, büyük kolaylık.</h2>
+        <p class="sec-sub">Her biri tek bir işe odaklanır.<br> Aç, kullan, kapat.</p>
+      </div>
+
+      <div class="tiles">
+        <a class="tile" href="https://batuhansavas-yilmaz.github.io/textrecweb/" target="_blank" rel="noopener">
+          <span class="tile-index"><i></i>01 / METİN</span>
+          <span class="icon-box"><img src="assets/textrec.svg" alt="TextRec uygulama ikonu"></span>
+          <span class="app-label">TextRec</span>
+          <span class="tile-desc">Çek,Tara,Kaydet.
+          </span>
+       
+          <span class="tile-open">Uygulamayı aç
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          </span>
+        </a>
+
+        <a class="tile" href="https://batuhansavas-yilmaz.github.io/oyunmasasi/" target="_blank" rel="noopener">
+          <span class="tile-index"><i></i>02 / OYUN</span>
+          <span class="icon-box"><img src="assets/oyunmasasi.png" alt="Oyun Masası uygulama ikonu"></span>
+          <span class="app-label">Oyun Masası</span>
+          <span class="tile-desc">Monopoly, 101 Okey ve UNO için canlı puan takibi. Masalar tüm cihazlarda senkron.</span>
+          <span class="tile-open">Uygulamayı aç
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          </span>
+        </a>
+
+        <a class="tile" href="https://batuhansavas-yilmaz.github.io/hesapmatikweb/" target="_blank" rel="noopener">
+          <span class="tile-index"><i></i>03 / HESAP</span>
+          <span class="icon-box"><img src="assets/hesapmatik.png" alt="HesapMatik uygulama ikonu"></span>
+          <span class="app-label">HesapMatik</span>
+          <span class="tile-desc">Karmaşık hesaplamalardan kurtulun.</span>
+          <span class="tile-open">Uygulamayı aç
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="wrap about-grid">
+      <h2>Hayatı kolaylaştırmak için <span>üç küçük araç.</span></h2>
+      <div class="about-copy">
+        <p>Kendi ihtiyaçlarım için geliştirdiğim araçları, aynı ihtiyacı duyan herkes kullanabilsin diye yayınlıyorum. Hepsi tarayıcıda çalışır; indirmek ya da üye olmak gerekmez.</p>
+        <p>Yeni fikirler ve küçük deneyler eklenmeye devam ediyor.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-inner">
+    <span>© 2026 From B.S.Y.</span>
+  </div>
+</footer>
+
+<script>
+  document.addEventListener("pointerdown", (event) => {
+    const host = event.target.closest(".icon-box, .btn-ripple");
+    if (!host) return;
+    const rect = host.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height) * 2.1;
+    const ripple = document.createElement("span");
+    ripple.className = "ripple";
+    ripple.style.width = ripple.style.height = size + "px";
+    ripple.style.left = event.clientX - rect.left - size / 2 + "px";
+    ripple.style.top = event.clientY - rect.top - size / 2 + "px";
+    if (host.dataset.ripple === "light") ripple.style.background = "rgba(255, 255, 255, .22)";
+    host.appendChild(ripple);
+    ripple.addEventListener("animationend", () => ripple.remove());
+  }, { passive: true });
+</script>
+</body>
+</html>

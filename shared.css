@@ -1,0 +1,124 @@
+:root {
+  --teal: #00a6a6;
+  --teal-deep: #2d7f85;
+  --teal-ink: #0b3b3c;
+  --ink: #0a2b2c;
+  --paper: #fafaf7;
+  --font: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --pixel: "Silkscreen", "Press Start 2P", "Courier New", monospace;
+  --card: #ececec;
+  --shadow-card: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; font-family: var(--font); -webkit-font-smoothing: antialiased; }
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; }
+button { font: inherit; }
+::selection { background: var(--teal); color: #fff; }
+
+.tagline {
+  font-family: var(--pixel);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: .98;
+  letter-spacing: .035em;
+  margin: 0;
+}
+.tagline span { display: block; }
+
+.brand-logo { border-radius: 50%; }
+
+/* Ayni hesapmatik ana ekran butonu */
+.app-tile {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+}
+.icon-box {
+  position: relative;
+  overflow: hidden;
+  width: 138px;
+  height: 138px;
+  padding: 8px;
+  border-radius: 20px;
+  display: grid;
+  place-items: center;
+  background: var(--tile-bg, #ececec);
+  box-shadow: var(--shadow-card);
+  transition: background-color .18s ease, transform .18s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.icon-box img, .icon-box svg { width: 88%; height: 88%; object-fit: contain; pointer-events: none; border-radius: 14px; }
+.icon-box::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--tile-hover, rgba(0, 0, 0, .06));
+  opacity: 0;
+  transition: opacity .15s ease;
+  pointer-events: none;
+}
+@media (hover: hover) {
+  .app-tile:hover .icon-box::after { opacity: 1; }
+}
+.app-tile:active .icon-box { transform: scale(.985); }
+.app-tile:focus-visible { outline: none; }
+.app-tile:focus-visible .icon-box { outline: 2px solid var(--focus, #0087f5); outline-offset: 3px; }
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--ripple, rgba(0, 0, 0, .18));
+  transform: scale(0);
+  animation: ripple .48s ease-out forwards;
+  pointer-events: none;
+  z-index: 4;
+}
+@keyframes ripple {
+  0% { transform: scale(0); opacity: .45; }
+  55% { opacity: .28; }
+  100% { transform: scale(1); opacity: 0; }
+}
+
+.app-label {
+  margin-top: 5px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.16;
+  letter-spacing: -.01em;
+}
+
+.btn-ripple {
+  position: relative;
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 480px) {
+  .icon-box { width: 124px; height: 124px; border-radius: 18px; }
+  .app-label { font-size: 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+  .ripple { display: none; }
+}
