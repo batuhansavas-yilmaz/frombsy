@@ -2,10 +2,14 @@
 <html lang="tr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>From B.S.Y.</title>
 <meta name="description" content="From B.S.Y. — Hayatı Kolaylaştıran Ürünler">
 <meta name="theme-color" content="#050a18">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="From B.S.Y.">
 <link rel="icon" href="assets/logo.png" type="image/png">
 <link rel="apple-touch-icon" href="assets/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,6 +26,7 @@
     --blue-soft: rgba(111, 155, 255, .14);
     --blue-border: rgba(111, 155, 255, .3);
   }
+  html { background: var(--night); }
   body {
     background:
       radial-gradient(1100px 620px at 50% -240px, rgba(55, 92, 214, .55), transparent 68%),
@@ -49,6 +54,9 @@
     position: sticky;
     top: 0;
     z-index: 30;
+    padding-top: env(safe-area-inset-top);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
     background: rgba(5, 10, 24, .72);
     border-bottom: 1px solid var(--line);
     -webkit-backdrop-filter: blur(18px);
