@@ -5,7 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>From B.S.Y.</title>
 <meta name="description" content="From B.S.Y. — Hayatı Kolaylaştıran Ürünler">
-<meta name="theme-color" content="#050a18">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#050a18" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f4f8ff" media="(prefers-color-scheme: light)">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -26,7 +28,7 @@
     --blue-soft: rgba(111, 155, 255, .14);
     --blue-border: rgba(111, 155, 255, .3);
   }
-  html { background: var(--night); }
+  html { background: var(--night); color-scheme: dark; }
   body {
     background:
       radial-gradient(1100px 620px at 50% -240px, rgba(55, 92, 214, .55), transparent 68%),
@@ -219,7 +221,7 @@
   }
   .sec-head h2 { margin: 0; font-size: clamp(26px, 3vw, 38px); letter-spacing: -.035em; line-height: 1.15; color: var(--bright); }
   .sec-sub { margin: 13px 0 0; color: var(--muted); font-size: 14px; line-height: 1.7; }
-  .tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+  .tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
   .tile {
     position: relative;
     display: flex;
@@ -247,11 +249,28 @@
     align-items: center;
     gap: 8px;
     font-family: var(--pixel);
-    font-size: 8px;
+    font-size: 10px;
     letter-spacing: .08em;
     color: rgba(205, 220, 255, .36);
   }
   .tile-index i { width: 16px; height: 1px; background: rgba(160, 190, 255, .24); }
+  .tile-index .pixel-i {
+    position: relative;
+    display: inline-block;
+    width: .2em;
+    height: .6em;
+    vertical-align: baseline;
+  }
+  .tile-index .pixel-i::before,
+  .tile-index .pixel-i::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: .2em;
+    background: currentColor;
+  }
+  .tile-index .pixel-i::before { top: 0; height: .1em; }
+  .tile-index .pixel-i::after { bottom: 0; height: .4em; }
   .tile .icon-box {
     --tile-bg: #232e50;
     --tile-hover: rgba(255, 255, 255, .08);
@@ -320,6 +339,9 @@
   .foot-inner a { color: rgba(205, 220, 255, .58); text-decoration: none; font-weight: 600; }
   .foot-inner a:hover { color: #fff; }
 
+  @media (max-width: 1080px) and (min-width: 861px) {
+    .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 760px; margin: 0 auto; }
+  }
   @media (max-width: 860px) {
     .tiles { grid-template-columns: 1fr; grid-auto-rows: 1fr; max-width: 420px; margin: 0 auto; gap: 12px; }
     .tile {
@@ -365,6 +387,80 @@
     .foot-inner { flex-direction: column; align-items: flex-start; gap: 10px; }
     .btn-light, .btn-ghost { width: 100%; }
   }
+  @media (prefers-color-scheme: light) {
+    :root {
+      color-scheme: light;
+      --night: #eef5ff;
+      --bright: #0b1f44;
+      --muted: #475b80;
+      --line: rgba(37, 99, 235, .14);
+      --blue: #2563eb;
+      --blue-soft: rgba(37, 99, 235, .08);
+      --blue-border: rgba(37, 99, 235, .24);
+      --card: #fff;
+      --shadow-card: 0 2px 1px -1px rgba(20, 45, 90, .12), 0 1px 1px 0 rgba(20, 45, 90, .08), 0 1px 3px 0 rgba(20, 45, 90, .08);
+    }
+    body {
+      background:
+        radial-gradient(1100px 620px at 50% -240px, rgba(147, 197, 253, .6), transparent 68%),
+        radial-gradient(700px 500px at 92% 28%, rgba(96, 165, 250, .16), transparent 65%),
+        radial-gradient(800px 500px at -10% 70%, rgba(191, 219, 254, .5), transparent 65%),
+        linear-gradient(160deg, #eef6ff 0%, #f9fcff 52%, #eaf2ff 100%);
+      color: var(--bright);
+    }
+    body::before {
+      background-image:
+        linear-gradient(rgba(37, 99, 235, .055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(37, 99, 235, .055) 1px, transparent 1px);
+    }
+    .top { background: rgba(249, 252, 255, .78); }
+    .brand strong { color: #0a1d3f; }
+    .brand small { color: #526a93; }
+    .top-nav a { color: #4a5f86; }
+    .top-nav a:hover { color: #0b1f44; background: rgba(37, 99, 235, .08); }
+    .top-nav a.gh { color: #0b1f44; background: rgba(37, 99, 235, .06); }
+    .top-nav a.gh:hover { background: var(--blue-soft); }
+    .hero-badge { color: #1d4ed8; }
+    .logo-orbit::before { border-color: rgba(37, 99, 235, .2); box-shadow: 0 0 70px rgba(37, 99, 235, .18); }
+    .orbit-ring { border-color: rgba(37, 99, 235, .28); }
+    .orbit-ring::before { background: #2563eb; box-shadow: 0 0 12px rgba(37, 99, 235, .55); }
+    .orbit-ring::after { background: #0f766e; box-shadow: 0 0 10px rgba(15, 118, 110, .45); }
+    .hero-logo { filter: drop-shadow(0 0 28px rgba(37, 99, 235, .3)) drop-shadow(0 18px 30px rgba(30, 64, 175, .18)); }
+    .hero-title { color: #081a38; text-shadow: 0 0 52px rgba(37, 99, 235, .18); }
+    .btn-light { background: #2563eb; color: #fff; box-shadow: 0 12px 28px rgba(37, 99, 235, .24); }
+    .btn-light:hover { background-image: linear-gradient(rgba(0, 0, 0, .1), rgba(0, 0, 0, .1)); }
+    .btn-light .ripple { background: rgba(255, 255, 255, .32); }
+    .btn-ghost { color: #173a71; background: rgba(37, 99, 235, .05); }
+    .btn-ghost:hover { border-color: rgba(37, 99, 235, .55); background: rgba(37, 99, 235, .1); }
+    .btn-ghost .ripple { background: rgba(37, 99, 235, .18); }
+    .eyebrow { color: #2563eb; }
+    .tile {
+      background:
+        radial-gradient(360px 160px at 50% -40px, rgba(96, 165, 250, .16), transparent 75%),
+        linear-gradient(180deg, rgba(255, 255, 255, .94), rgba(243, 248, 255, .88));
+      border-color: var(--line);
+    }
+    .tile:hover {
+      border-color: rgba(37, 99, 235, .34);
+      box-shadow: 0 26px 60px rgba(37, 99, 235, .16);
+    }
+    .tile-index { color: #51678f; }
+    .tile-index i { background: rgba(37, 99, 235, .24); }
+    .tile .icon-box {
+      --tile-bg: #e7efff;
+      --tile-hover: rgba(37, 99, 235, .07);
+      --ripple: rgba(37, 99, 235, .18);
+      --focus: #2563eb;
+    }
+    .tile-open { color: #2457c5; }
+    .about h2 span { color: #2563eb; }
+    .about-link { color: #153a75; }
+    .about-link:hover { color: #2563eb; }
+    .foot-inner { color: #4f6488; }
+    .foot-left { color: #1c335c; }
+    .foot-inner a { color: #4c6288; }
+    .foot-inner a:hover { color: #0a1f44; }
+  }
 </style>
 </head>
 <body>
@@ -402,7 +498,7 @@
           Uygulamaları gör
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v16m0 0-6-6m6 6 6-6"/></svg>
         </a>
-        <a class="btn-ghost btn-ripple" href="https://github.com/batuhansavas-yilmaz" target="_blank" rel="noopener" data-ripple="light">
+        <a class="btn-ghost btn-ripple" href="https://github.com/batuhansavas-yilmaz" target="_blank" rel="noopener">
           GitHub profilim
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
         </a>
@@ -419,7 +515,7 @@
 
       <div class="tiles">
         <a class="tile" href="https://batuhansavas-yilmaz.github.io/textrecweb/" target="_blank" rel="noopener">
-          <span class="tile-index"><i></i>01 / METİN</span>
+          <span class="tile-index"><i></i><span class="index-text">01 / MET<span class="pixel-i"><span class="sr-only">İ</span></span>N</span></span>
           <span class="icon-box"><img src="assets/textrec.svg" alt="TextRec uygulama ikonu"></span>
           <span class="app-label">TextRec</span>
           <span class="tile-desc">Çek,Tara,Kaydet.
@@ -449,17 +545,26 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
           </span>
         </a>
+
+        <a class="tile" href="https://github.com/batuhansavas-yilmaz/synpu" target="_blank" rel="noopener">
+          <span class="tile-index"><i></i><span class="index-text">04 / S<span class="pixel-i"><span class="sr-only">İ</span></span>STEM</span></span>
+          <span class="icon-box"><img src="assets/synpu.png" alt="Synpu uygulama ikonu"></span>
+          <span class="app-label">Synpu</span>
+          <span class="tile-desc">PC verileriniz cebinizde.</span>
+          <span class="tile-open">GitHub'da incele
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          </span>
+        </a>
       </div>
     </div>
   </section>
 
   <section class="about" id="about">
     <div class="wrap about-grid">
-      <h2>Hayatı kolaylaştırmak için <span>üç küçük araç.</span></h2>
+      <h2>Hayatı kolaylaştırmak için <span>dört kolay küçük araç.</span></h2>
       <div class="about-copy">
         <p>Kendi ihtiyaçlarım için geliştirdiğim araçları, aynı ihtiyacı duyan herkes kullanabilsin diye yayınlıyorum. Hepsi tarayıcıda çalışır; indirmek ya da üye olmak gerekmez.</p>
         <p>Yeni fikirler ve küçük deneyler eklenmeye devam edecek.</p>
-        </a>
       </div>
     </div>
   </section>
@@ -482,7 +587,6 @@
     ripple.style.width = ripple.style.height = size + "px";
     ripple.style.left = event.clientX - rect.left - size / 2 + "px";
     ripple.style.top = event.clientY - rect.top - size / 2 + "px";
-    if (host.dataset.ripple === "light") ripple.style.background = "rgba(255, 255, 255, .22)";
     host.appendChild(ripple);
     ripple.addEventListener("animationend", () => ripple.remove());
   }, { passive: true });
