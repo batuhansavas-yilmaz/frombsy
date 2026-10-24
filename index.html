@@ -28,36 +28,31 @@
     --blue-soft: rgba(111, 155, 255, .14);
     --blue-border: rgba(111, 155, 255, .3);
   }
-  html {
-  background: var(--night);
-  color-scheme: dark;
-  min-height: 100%;
-  height: -webkit-fill-available;
+  html { background: var(--night); color-scheme: dark; }
+
+body {
+  background:
+    radial-gradient(1100px 620px at 50% -240px, rgba(55, 92, 214, .55), transparent 68%),
+    radial-gradient(700px 500px at 92% 28%, rgba(64, 120, 255, .12), transparent 65%),
+    radial-gradient(800px 500px at -10% 70%, rgba(30, 60, 150, .16), transparent 65%),
+    linear-gradient(160deg, #0a1638 0%, #050a18 52%, #081127 100%);
+  color: var(--bright);
+  position: relative;
+  min-height: 100svh;
 }
 
-  body {
-    background:
-      radial-gradient(1100px 620px at 50% -240px, rgba(55, 92, 214, .55), transparent 68%),
-      radial-gradient(700px 500px at 92% 28%, rgba(64, 120, 255, .12), transparent 65%),
-      radial-gradient(800px 500px at -10% 70%, rgba(30, 60, 150, .16), transparent 65%),
-      linear-gradient(160deg, #0a1638 0%, #050a18 52%, #081127 100%);
-      min-height: 100vh;
-min-height: 100dvh;
-min-height: -webkit-fill-available;
-
-    color: var(--bright);
-  }
-  body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    background-image:
-      linear-gradient(rgba(255, 255, 255, .026) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, .026) 1px, transparent 1px);
-    background-size: 76px 76px;
-    pointer-events: none;
-  }
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, .026) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, .026) 1px, transparent 1px);
+  background-size: 76px 76px;
+  pointer-events: none;
+}
+  
   .wrap { position: relative; z-index: 1; width: min(1160px, calc(100% - 48px)); margin: 0 auto; }
 
   /* Header */
