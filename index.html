@@ -28,14 +28,23 @@
     --blue-soft: rgba(111, 155, 255, .14);
     --blue-border: rgba(111, 155, 255, .3);
   }
-  html { background: var(--night); color-scheme: dark; }
+  html {
+  background: var(--night);
+  color-scheme: dark;
+  min-height: 100%;
+  height: -webkit-fill-available;
+}
+
   body {
     background:
       radial-gradient(1100px 620px at 50% -240px, rgba(55, 92, 214, .55), transparent 68%),
       radial-gradient(700px 500px at 92% 28%, rgba(64, 120, 255, .12), transparent 65%),
       radial-gradient(800px 500px at -10% 70%, rgba(30, 60, 150, .16), transparent 65%),
       linear-gradient(160deg, #0a1638 0%, #050a18 52%, #081127 100%);
-    background-attachment: fixed;
+      min-height: 100vh;
+min-height: 100dvh;
+min-height: -webkit-fill-available;
+
     color: var(--bright);
   }
   body::before {
