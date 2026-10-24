@@ -29,30 +29,26 @@
     --blue-border: rgba(111, 155, 255, .3);
   }
   html { background: var(--night); color-scheme: dark; }
-
-body {
-  background:
-    radial-gradient(1100px 620px at 50% -240px, rgba(55, 92, 214, .55), transparent 68%),
-    radial-gradient(700px 500px at 92% 28%, rgba(64, 120, 255, .12), transparent 65%),
-    radial-gradient(800px 500px at -10% 70%, rgba(30, 60, 150, .16), transparent 65%),
-    linear-gradient(160deg, #0a1638 0%, #050a18 52%, #081127 100%);
-  color: var(--bright);
-  position: relative;
-  min-height: 100svh;
-}
-
-body::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, .026) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, .026) 1px, transparent 1px);
-  background-size: 76px 76px;
-  pointer-events: none;
-}
-  
+  body {
+    background:
+      radial-gradient(1100px 620px at 50% -240px, rgba(55, 92, 214, .55), transparent 68%),
+      radial-gradient(700px 500px at 92% 28%, rgba(64, 120, 255, .12), transparent 65%),
+      radial-gradient(800px 500px at -10% 70%, rgba(30, 60, 150, .16), transparent 65%),
+      linear-gradient(160deg, #0a1638 0%, #050a18 52%, #081127 100%);
+    background-attachment: fixed;
+    color: var(--bright);
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, .026) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, .026) 1px, transparent 1px);
+    background-size: 76px 76px;
+    pointer-events: none;
+  }
   .wrap { position: relative; z-index: 1; width: min(1160px, calc(100% - 48px)); margin: 0 auto; }
 
   /* Header */
@@ -499,39 +495,9 @@ body::before {
     .foot-inner a { color: #4c6288; }
     .foot-inner a:hover { color: #0a1f44; }
   }
-  html, body {
-  margin: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  overscroll-behavior: none;
-}
-.app {
-  position: fixed;
-  inset: 0;
-  height: 100vh;
-  height: 100dvh;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-.scroll {
-  flex: 1 1 auto;
-  min-height: 0;
-  overflow-y: auto;
-  overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior-y: contain;
-  scroll-behavior: smooth; 
-}
-.top { position: relative; flex: 0 0 auto; }
-
-
-  
 </style>
 </head>
 <body>
-  <div class="app">
 <header class="top">
   <div class="wrap top-inner">
     <a class="brand" href="#" aria-label="Ana sayfa">
@@ -551,7 +517,7 @@ body::before {
     </nav>
   </div>
 </header>
- <div class="scroll"> 
+
 <main>
   <section class="hero">
     <div class="wrap hero-inner">
@@ -653,7 +619,7 @@ body::before {
     <span>© 2026 From B.S.Y.</span>
   </div>
 </footer>
-</div>
+
 <script>
   document.addEventListener("pointerdown", (event) => {
     const host = event.target.closest(".icon-box, .btn-ripple");
@@ -669,6 +635,5 @@ body::before {
     ripple.addEventListener("animationend", () => ripple.remove());
   }, { passive: true });
 </script>
-</div>
 </body>
 </html>
