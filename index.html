@@ -14,9 +14,8 @@
 <meta name="apple-mobile-web-app-title" content="From B.S.Y.">
 <link rel="icon" href="assets/logo.png" type="image/png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Silkscreen:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="assets/fonts/fonts.css">
 <link rel="stylesheet" href="shared.css">
 <style>
   :root {
@@ -53,8 +52,7 @@
 
   /* Header */
   .top {
-    position: sticky;
-    top: 0;
+    position: relative;
     z-index: 30;
     padding-top: env(safe-area-inset-top);
     padding-left: env(safe-area-inset-left);
@@ -495,6 +493,16 @@
     .foot-inner a { color: #4c6288; }
     .foot-inner a:hover { color: #0a1f44; }
   }
+  .scroller {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+    scroll-behavior: smooth;
+  }
+  .apps, .about { scroll-margin-top: 16px; }
 </style>
 </head>
 <body>
@@ -518,6 +526,7 @@
   </div>
 </header>
 
+<div class="scroller">
 <main>
   <section class="hero">
     <div class="wrap hero-inner">
@@ -619,6 +628,7 @@
     <span>© 2026 From B.S.Y.</span>
   </div>
 </footer>
+</div>
 
 <script>
   document.addEventListener("pointerdown", (event) => {
@@ -634,6 +644,11 @@
     host.appendChild(ripple);
     ripple.addEventListener("animationend", () => ripple.remove());
   }, { passive: true });
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js').catch(() => {});
+    });
+  }
 </script>
 </body>
 </html>
