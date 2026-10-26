@@ -1,4 +1,4 @@
-const CACHE_NAME = 'frombsy-v2';
+const CACHE_NAME = 'frombsy-v3';
 const FONT_CACHE = 'frombsy-fonts-v1';
 const APP_SHELL = [
   './',

@@ -16,6 +16,7 @@ body {
   margin: 0;
   height: 100%;
   overflow: hidden;
+  overscroll-behavior: none;
   display: flex;
   flex-direction: column;
   font-family: var(--font);
@@ -131,3 +132,6 @@ button { font: inherit; }
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
   .ripple { display: none; }
 }
+
+body { height: 100dvh; }
+
