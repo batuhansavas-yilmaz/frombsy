@@ -1,4 +1,4 @@
-﻿const CACHE_NAME = 'frombsy-v6';
+﻿const CACHE_NAME = 'frombsy-v15';
 const FONT_CACHE = 'frombsy-fonts-v1';
 const APP_SHELL = [
   './',
@@ -26,6 +26,7 @@ const APP_SHELL = [
   './assets/hesapmatik.png',
   './assets/oyunmasasi.png',
   './assets/qrgen.svg',
+  './assets/kilit.png',
   './assets/synpu.png',
   './assets/textrec.svg'
 ];

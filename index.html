@@ -87,6 +87,7 @@
     text-decoration: none;
     font-size: 12.5px;
     font-weight: 700;
+    white-space: nowrap;
     transition: color .15s, background .15s;
   }
   .top-nav a:hover { color: #fff; background: rgba(111, 155, 255, .08); }
@@ -208,7 +209,7 @@
 
   /* Apps */
   .apps { position: relative; padding: 36px 0 80px; scroll-margin-top: 80px; }
-  .apps .wrap { width: min(1720px, calc(100% - 48px)); }
+  .apps .wrap { width: min(1860px, calc(100% - 48px)); }
   .sec-head { max-width: 600px; margin: 0 auto 42px; text-align: center; }
   .eyebrow {
     margin: 0 0 14px;
@@ -220,7 +221,7 @@
   }
   .sec-head h2 { margin: 0; font-size: clamp(26px, 3vw, 38px); letter-spacing: -.035em; line-height: 1.15; color: var(--bright); }
   .sec-sub { margin: 13px 0 0; color: var(--muted); font-size: 14px; line-height: 1.7; }
-  .tiles { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 18px; }
+  .tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 1056px; margin: 0 auto; gap: 18px; }
 
   .tile {
     position: relative;
@@ -228,6 +229,8 @@
     flex-direction: column;
     align-items: center;
     aspect-ratio: 1 / 1;
+    min-height: 0;
+    overflow: hidden;
     padding: 18px 16px 16px;
     border: 1px solid var(--line);
     border-radius: 24px;
@@ -249,10 +252,12 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    font-family: var(--pixel);
+    margin-top: -4px;
+    font-family: var(--font);
     font-size: 10px;
-    letter-spacing: .08em;
-    color: rgba(205, 220, 255, .36);
+    font-weight: 800;
+    letter-spacing: .14em;
+    color: rgba(205, 220, 255, .52);
   }
   .tile-index i { width: 16px; height: 1px; background: rgba(160, 190, 255, .24); }
   .tile-index .pixel-i {
@@ -370,82 +375,54 @@
   .foot-inner a { color: rgba(205, 220, 255, .58); text-decoration: none; font-weight: 600; }
   .foot-inner a:hover { color: #fff; }
 
-  @media (max-width: 1500px) and (min-width: 861px) {
-    .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 660px; margin: 0 auto; }
+  @media (min-width: 1101px) and (max-width: 1799px) {
+    .tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 1056px; margin: 0 auto; }
     .tile { padding: 22px 22px 20px; }
     .tile .icon-box { margin-top: 18px; width: min(138px, 42%); padding: 8px; border-radius: 20px; }
     .tile .app-label { margin-top: 16px; font-size: 21px; }
     .tile-desc { margin-top: 7px; font-size: 12px; }
     .tile-open { padding-top: 14px; }
     .tile-actions { padding-top: 14px; }
-    .tile:last-child {
-      grid-column: 1 / -1;
-      display: grid;
-      grid-template-columns: 138px minmax(0, 1fr);
-      grid-template-rows: auto auto 1fr auto;
-      grid-template-areas:
-        "icon index"
-        "icon label"
-        "icon desc"
-        "icon open";
-      align-items: start;
-      column-gap: 24px;
-      aspect-ratio: auto;
-      min-height: 194px;
-      padding: 26px 28px 24px;
-      border-radius: 24px;
-      text-align: left;
-    }
-    .tile:last-child .tile-index { grid-area: index; align-self: start; }
-    .tile:last-child .icon-box {
-      grid-area: icon;
-      align-self: center;
-      width: 138px;
-      height: 138px;
-      margin-top: 0;
-      padding: 8px;
-      border-radius: 20px;
-      aspect-ratio: auto;
-    }
-    .tile:last-child .icon-box img,
-    .tile:last-child .icon-box svg { border-radius: 14px; }
-    .tile:last-child .app-label { grid-area: label; margin-top: 0; font-size: 21px; }
-    .tile:last-child .tile-desc {
-      grid-area: desc;
-      display: block;
-      -webkit-line-clamp: unset;
-      overflow: visible;
-      margin-top: 4px;
-      max-width: 520px;
-      font-size: 12.5px;
-      line-height: 1.65;
-    }
-    .tile:last-child .tile-actions {
-      grid-area: open;
-      align-self: end;
-      width: 100%;
-      margin-top: 8px;
-      padding-top: 0;
-    }
+  }
+  @media (min-width: 1800px) {
+    .tiles { grid-template-columns: repeat(6, minmax(0, 1fr)); max-width: 1860px; gap: 16px; margin: 0 auto; }
+  }
+  @media (max-width: 1100px) and (min-width: 861px) {
+    .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 698px; margin: 0 auto; }
+    .tile { padding: 22px 22px 20px; }
+    .tile .icon-box { margin-top: 18px; width: min(138px, 42%); padding: 8px; border-radius: 20px; }
+    .tile .app-label { margin-top: 16px; font-size: 21px; }
+    .tile-desc { margin-top: 7px; font-size: 12px; }
+    .tile-open { padding-top: 14px; }
+    .tile-actions { padding-top: 14px; }
   }
   @media (max-width: 860px) {
     .tiles { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; gap: 12px; }
     .tile {
       display: grid;
       grid-template-columns: 76px minmax(0, 1fr);
-      grid-template-rows: auto 1fr auto;
+      grid-template-rows: auto auto 1fr auto;
       grid-template-areas:
+        "index index"
         "icon label"
         "icon desc"
         "icon open";
       align-items: start;
       column-gap: 16px;
       aspect-ratio: auto;
-      padding: 16px;
+      padding: 18px;
       border-radius: 18px;
       text-align: left;
     }
-    .tile-index { display: none; }
+    .tile-index {
+      grid-area: index;
+      display: flex;
+      position: static;
+      margin-top: -5px;
+      margin-bottom: 8px;
+      font-size: 9px;
+      letter-spacing: .12em;
+    }
     .tile .icon-box {
       grid-area: icon;
       align-self: center;
@@ -469,7 +446,13 @@
       line-height: 1.4;
     }
     .tile-open { grid-area: open; align-self: end; margin-top: 6px; padding-top: 0; font-size: 9.5px; }
-    .tile-actions { grid-area: open; align-self: end; margin-top: 6px; padding-top: 0; }
+    .tile-actions {
+      grid-area: open;
+      align-self: end;
+      flex-direction: row-reverse;
+      margin-top: 6px;
+      padding-top: 0;
+    }
     .about-grid { grid-template-columns: 1fr; gap: 20px; }
     .hero { padding: 64px 0 56px; }
     .top-nav a:not(.gh) { display: none; }
@@ -483,6 +466,7 @@
   }
   @media (max-width: 560px) {
     .wrap { width: calc(100% - 32px); }
+    .apps .wrap { width: calc(100% - 40px); }
     .logo-orbit { width: 150px; height: 150px; }
     .logo-orbit .hero-logo { width: 92px; height: 92px; }
     .hero-sub { font-size: 13.5px; }
@@ -590,8 +574,8 @@
     <nav class="top-nav" aria-label="Ana menü">
       <a href="#apps">Uygulamalar</a>
       <a href="#about">Hakkında</a>
-      <a class="gh" href="https://github.com/batuhansavas-yilmaz" target="_blank" rel="noopener">
-        GitHub
+      <a class="gh" href="https://play.google.com/store/apps/dev?id=5406504893764763263&hl=tr" target="_blank" rel="noopener">
+        Google Play
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
       </a>
     </nav>
@@ -602,7 +586,6 @@
 <main>
   <section class="hero">
     <div class="wrap hero-inner">
-      <p class="hero-badge"><i></i>TARAYICINIZDA ÇALIŞAN UYGULAMALAR</p>
       <div class="logo-orbit">
         <span class="orbit-ring" aria-hidden="true"></span>
         <img class="hero-logo" src="assets/logo.png" alt="To Make Life Easier logosu" width="108" height="108">
@@ -630,10 +613,10 @@
 
       <div class="tiles">
         <div class="tile">
-          <span class="tile-index"><i></i><span class="index-text">01 / MET<span class="pixel-i"><span class="sr-only">İ</span></span>N</span></span>
+          <span class="tile-index"><i></i><span class="index-text">01 / METİN</span></span>
           <span class="icon-box"><img src="assets/textrec.svg" alt="TextRec. uygulama ikonu"></span>
           <span class="app-label">TextRec.</span>
-          <span class="tile-desc">Çek,Tara,Kaydet.</span>
+          <span class="tile-desc">Çek,tara,kaydet.</span>
           <div class="tile-actions">
             <a class="tile-open" href="https://batuhansavas-yilmaz.github.io/textrecweb/" target="_blank" rel="noopener">Webde aç
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
@@ -645,15 +628,15 @@
           </div>
         </div>
 
-        <a class="tile" href="https://batuhansavas-yilmaz.github.io/oyunmasasi/" target="_blank" rel="noopener">
+        <div class="tile">
           <span class="tile-index"><i></i>02 / OYUN</span>
           <span class="icon-box"><img src="assets/oyunmasasi.png" alt="Oyun Masası uygulama ikonu"></span>
           <span class="app-label">Oyun Masası</span>
           <span class="tile-desc">Monopoly, 101 Okey ve UNO için canlı puan takibi. Masalar tüm cihazlarda senkron.</span>
-          <span class="tile-open">Webde aç
+          <a class="tile-open" href="https://batuhansavas-yilmaz.github.io/oyunmasasi/" target="_blank" rel="noopener">Webde aç
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
-          </span>
-        </a>
+          </a>
+        </div>
 
         <div class="tile">
           <span class="tile-index"><i></i>03 / HESAP</span>
@@ -671,15 +654,15 @@
           </div>
         </div>
 
-        <a class="tile" href="https://github.com/batuhansavas-yilmaz/synpu/" target="_blank" rel="noopener">
-          <span class="tile-index"><i></i><span class="index-text">04 / S<span class="pixel-i"><span class="sr-only">İ</span></span>STEM</span></span>
+        <div class="tile">
+          <span class="tile-index"><i></i><span class="index-text">04 / SİSTEM</span></span>
           <span class="icon-box"><img src="assets/synpu.png" alt="Synpu uygulama ikonu"></span>
           <span class="app-label">Synpu</span>
           <span class="tile-desc">PC verileriniz cebinizde.</span>
-          <span class="tile-open">GitHub'da incele
+          <a class="tile-open" href="https://github.com/batuhansavas-yilmaz/synpu/" target="_blank" rel="noopener">GitHub'da incele
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
-          </span>
-        </a>
+          </a>
+        </div>
 
         <div class="tile">
           <span class="tile-index"><i></i>05 / QR</span>
@@ -696,15 +679,26 @@
             </a>
           </div>
         </div>
+
+        <div class="tile">
+          <span class="tile-index"><i></i><span class="index-text">06 / GÜVENLİK</span></span>
+          <span class="icon-box"><img src="assets/kilit.png" alt="PassGen uygulama ikonu"></span>
+          <span class="app-label">PassGen</span>
+          <span class="tile-desc">Güçlü şifreler oluşturun.</span>
+          <a class="tile-open" href="https://play.google.com/store/apps/details?id=com.bsavasy.pasgen&amp;hl=tr" target="_blank" rel="noopener">
+            <svg class="android-mark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.86-.29-.15-.66-.04-.82.26L16.4 9.03C14.98 8.36 13.34 8 11.5 8s-3.48.36-4.9 1.03L4.64 5.69c-.16-.3-.53-.42-.82-.26-.3.17-.42.55-.26.86L5.4 9.48C3.09 10.8 1.5 13.13 1.5 15.81h20c0-2.68-1.59-5.01-3.9-6.33zM6.5 12.75c-.41 0-.75-.34-.75-.75s.34-.75.75-.75.75.34.75.75-.34.75-.75.75zm10 0c-.41 0-.75-.34-.75-.75s.34-.75.75-.75.75.34.75.75-.34.75-.75.75z"/></svg>
+            Android app
+          </a>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="about" id="about">
     <div class="wrap about-grid">
-      <h2>Hayatı kolaylaştırmak için <span>beş araç.</span></h2>
+      <h2>Hayatı kolaylaştırmak için <span>altı araç.</span></h2>
       <div class="about-copy">
-        <p>Kendi ihtiyaçlarım için geliştirdiğim araçları, aynı ihtiyacı duyan herkes kullanabilsin diye yayınlıyorum. Hepsi tarayıcıda çalışır; indirmek ya da üye olmak gerekmez.</p>
+        <p>Kendi ihtiyaçlarım için geliştirdiğim araçları, aynı ihtiyacı duyan herkes kullanabilsin diye yayınlıyorum. Webte, cepte, PC'de.</p>
         <p>Yeni fikirler ve küçük deneyler eklenmeye devam edecek.</p>
       </div>
     </div>
