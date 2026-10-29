@@ -208,7 +208,7 @@
 
   /* Apps */
   .apps { position: relative; padding: 36px 0 80px; scroll-margin-top: 80px; }
-  .apps .wrap { width: min(1480px, calc(100% - 48px)); }
+  .apps .wrap { width: min(1720px, calc(100% - 48px)); }
   .sec-head { max-width: 600px; margin: 0 auto 42px; text-align: center; }
   .eyebrow {
     margin: 0 0 14px;
@@ -227,7 +227,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 26px 20px 24px;
+    aspect-ratio: 1 / 1;
+    padding: 18px 16px 16px;
     border: 1px solid var(--line);
     border-radius: 24px;
     background:
@@ -276,7 +277,12 @@
     --tile-hover: rgba(255, 255, 255, .08);
     --ripple: rgba(180, 205, 255, .22);
     --focus: #9cb8ff;
-    margin-top: 26px;
+    margin-top: 14px;
+    width: min(138px, 40%);
+    height: auto;
+    aspect-ratio: 1 / 1;
+    padding: 6px;
+    border-radius: 18px;
   }
   @media (hover: hover) {
     .tile:hover .icon-box::after { opacity: 1; }
@@ -284,22 +290,47 @@
   .tile:active .icon-box { transform: scale(.985); }
   .tile:focus-visible { outline: none; }
   .tile:focus-visible .icon-box { outline: 2px solid var(--focus); outline-offset: 3px; }
-  .tile .app-label { margin-top: 20px; font-size: 21px; color: var(--bright); }
-  .tile-desc { margin-top: 9px; max-width: 260px; color: var(--muted); font-size: 12.5px; line-height: 1.65; }
+  .tile .app-label { margin-top: 12px; font-size: 19px; color: var(--bright); }
+  .tile-desc {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-top: 4px;
+    max-width: 260px;
+    color: var(--muted);
+    font-size: 11.5px;
+    line-height: 1.5;
+  }
   .tile-open {
     display: inline-flex;
     align-items: center;
     gap: 7px;
     margin-top: auto;
-    padding-top: 18px;
+    padding-top: 10px;
     color: #b9cdff;
-    font-size: 9.5px;
+    font-size: 9px;
     font-weight: 800;
-    letter-spacing: .14em;
+    letter-spacing: .12em;
     text-transform: uppercase;
+    text-decoration: none;
   }
   .tile-open svg { width: 13px; height: 13px; transition: transform .15s; }
-  .tile:hover .tile-open svg { transform: translate(2px, -2px); }
+  .tile-open:hover { color: var(--bright); }
+  .tile-open:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; border-radius: 4px; }
+  .tile:hover .tile-open svg:not(.android-mark) { transform: translate(2px, -2px); }
+  .tile-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2px 10px;
+    width: 100%;
+    margin-top: auto;
+    padding-top: 10px;
+  }
+  .tile-actions .tile-open { margin-top: 0; padding-top: 0; }
+  .tile-open .android-mark { width: 14px; height: 14px; color: #3ddc84; }
 
   /* About */
   .about { position: relative; border-top: 1px solid var(--line); padding: 72px 0 84px; scroll-margin-top: 80px; }
@@ -339,8 +370,14 @@
   .foot-inner a { color: rgba(205, 220, 255, .58); text-decoration: none; font-weight: 600; }
   .foot-inner a:hover { color: #fff; }
 
-  @media (max-width: 1320px) and (min-width: 861px) {
-    .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 760px; margin: 0 auto; }
+  @media (max-width: 1500px) and (min-width: 861px) {
+    .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 660px; margin: 0 auto; }
+    .tile { padding: 22px 22px 20px; }
+    .tile .icon-box { margin-top: 18px; width: min(138px, 42%); padding: 8px; border-radius: 20px; }
+    .tile .app-label { margin-top: 16px; font-size: 21px; }
+    .tile-desc { margin-top: 7px; font-size: 12px; }
+    .tile-open { padding-top: 14px; }
+    .tile-actions { padding-top: 14px; }
     .tile:last-child {
       grid-column: 1 / -1;
       display: grid;
@@ -353,6 +390,7 @@
         "icon open";
       align-items: start;
       column-gap: 24px;
+      aspect-ratio: auto;
       min-height: 194px;
       padding: 26px 28px 24px;
       border-radius: 24px;
@@ -367,15 +405,31 @@
       margin-top: 0;
       padding: 8px;
       border-radius: 20px;
+      aspect-ratio: auto;
     }
     .tile:last-child .icon-box img,
     .tile:last-child .icon-box svg { border-radius: 14px; }
     .tile:last-child .app-label { grid-area: label; margin-top: 0; font-size: 21px; }
-    .tile:last-child .tile-desc { grid-area: desc; margin-top: 4px; max-width: 520px; font-size: 12.5px; line-height: 1.65; }
-    .tile:last-child .tile-open { grid-area: open; align-self: end; margin-top: 8px; padding-top: 0; }
+    .tile:last-child .tile-desc {
+      grid-area: desc;
+      display: block;
+      -webkit-line-clamp: unset;
+      overflow: visible;
+      margin-top: 4px;
+      max-width: 520px;
+      font-size: 12.5px;
+      line-height: 1.65;
+    }
+    .tile:last-child .tile-actions {
+      grid-area: open;
+      align-self: end;
+      width: 100%;
+      margin-top: 8px;
+      padding-top: 0;
+    }
   }
   @media (max-width: 860px) {
-    .tiles { grid-template-columns: 1fr; grid-auto-rows: 1fr; max-width: 420px; margin: 0 auto; gap: 12px; }
+    .tiles { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; gap: 12px; }
     .tile {
       display: grid;
       grid-template-columns: 76px minmax(0, 1fr);
@@ -386,6 +440,7 @@
         "icon open";
       align-items: start;
       column-gap: 16px;
+      aspect-ratio: auto;
       padding: 16px;
       border-radius: 18px;
       text-align: left;
@@ -399,15 +454,32 @@
       margin-top: 0;
       padding: 6px;
       border-radius: 16px;
+      aspect-ratio: auto;
     }
     .tile .icon-box img, .tile .icon-box svg { border-radius: 11px; }
     .tile .app-label { grid-area: label; margin-top: 0; font-size: 17px; }
-    .tile-desc { grid-area: desc; margin-top: 2px; max-width: none; font-size: 11px; line-height: 1.4; }
-    .tile-open { grid-area: open; align-self: end; margin-top: 6px; padding-top: 0; }
+    .tile-desc {
+      grid-area: desc;
+      display: block;
+      -webkit-line-clamp: unset;
+      overflow: visible;
+      margin-top: 2px;
+      max-width: none;
+      font-size: 11px;
+      line-height: 1.4;
+    }
+    .tile-open { grid-area: open; align-self: end; margin-top: 6px; padding-top: 0; font-size: 9.5px; }
+    .tile-actions { grid-area: open; align-self: end; margin-top: 6px; padding-top: 0; }
     .about-grid { grid-template-columns: 1fr; gap: 20px; }
     .hero { padding: 64px 0 56px; }
     .top-nav a:not(.gh) { display: none; }
     .top-inner { height: 66px; }
+  }
+  @media (min-width: 1600px) {
+    .tile .icon-box { width: min(146px, 42%); }
+    .tile .app-label { font-size: 21px; }
+    .tile-desc { font-size: 12px; }
+    .tile-open { font-size: 9.5px; }
   }
   @media (max-width: 560px) {
     .wrap { width: calc(100% - 32px); }
@@ -557,17 +629,21 @@
       </div>
 
       <div class="tiles">
-        <a class="tile" href="https://batuhansavas-yilmaz.github.io/textrecweb/" target="_blank" rel="noopener">
+        <div class="tile">
           <span class="tile-index"><i></i><span class="index-text">01 / MET<span class="pixel-i"><span class="sr-only">İ</span></span>N</span></span>
-          <span class="icon-box"><img src="assets/textrec.svg" alt="TextRec uygulama ikonu"></span>
-          <span class="app-label">TextRec</span>
-          <span class="tile-desc">Çek,Tara,Kaydet.
-          </span>
-       
-          <span class="tile-open">Uygulamayı aç
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
-          </span>
-        </a>
+          <span class="icon-box"><img src="assets/textrec.svg" alt="TextRec. uygulama ikonu"></span>
+          <span class="app-label">TextRec.</span>
+          <span class="tile-desc">Çek,Tara,Kaydet.</span>
+          <div class="tile-actions">
+            <a class="tile-open" href="https://batuhansavas-yilmaz.github.io/textrecweb/" target="_blank" rel="noopener">Webde aç
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+            </a>
+            <a class="tile-open" href="https://play.google.com/store/apps/details?id=com.bsavasy.textrec" target="_blank" rel="noopener">
+              <svg class="android-mark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.86-.29-.15-.66-.04-.82.26L16.4 9.03C14.98 8.36 13.34 8 11.5 8s-3.48.36-4.9 1.03L4.64 5.69c-.16-.3-.53-.42-.82-.26-.3.17-.42.55-.26.86L5.4 9.48C3.09 10.8 1.5 13.13 1.5 15.81h20c0-2.68-1.59-5.01-3.9-6.33zM6.5 12.75c-.41 0-.75-.34-.75-.75s.34-.75.75-.75.75.34.75.75-.34.75-.75.75zm10 0c-.41 0-.75-.34-.75-.75s.34-.75.75-.75.75.34.75.75-.34.75-.75.75z"/></svg>
+              Android app
+            </a>
+          </div>
+        </div>
 
         <a class="tile" href="https://batuhansavas-yilmaz.github.io/oyunmasasi/" target="_blank" rel="noopener">
           <span class="tile-index"><i></i>02 / OYUN</span>
@@ -579,15 +655,21 @@
           </span>
         </a>
 
-        <a class="tile" href="https://batuhansavas-yilmaz.github.io/hesapmatikweb/" target="_blank" rel="noopener">
+        <div class="tile">
           <span class="tile-index"><i></i>03 / HESAP</span>
           <span class="icon-box"><img src="assets/hesapmatik.png" alt="HesapMatik uygulama ikonu"></span>
           <span class="app-label">HesapMatik</span>
           <span class="tile-desc">Karmaşık hesaplamalardan kurtulun.</span>
-          <span class="tile-open">Uygulamayı aç
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
-          </span>
-        </a>
+          <div class="tile-actions">
+            <a class="tile-open" href="https://batuhansavas-yilmaz.github.io/hesapmatikweb/" target="_blank" rel="noopener">Webde aç
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+            </a>
+            <a class="tile-open" href="https://play.google.com/store/apps/details?id=com.bsavasy.toplu_hesaplayici" target="_blank" rel="noopener">
+              <svg class="android-mark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.86-.29-.15-.66-.04-.82.26L16.4 9.03C14.98 8.36 13.34 8 11.5 8s-3.48.36-4.9 1.03L4.64 5.69c-.16-.3-.53-.42-.82-.26-.3.17-.42.55-.26.86L5.4 9.48C3.09 10.8 1.5 13.13 1.5 15.81h20c0-2.68-1.59-5.01-3.9-6.33zM6.5 12.75c-.41 0-.75-.34-.75-.75s.34-.75.75-.75.75.34.75.75-.34.75-.75.75zm10 0c-.41 0-.75-.34-.75-.75s.34-.75.75-.75.75.34.75.75-.34.75-.75.75z"/></svg>
+              Android app
+            </a>
+          </div>
+        </div>
 
         <a class="tile" href="https://github.com/batuhansavas-yilmaz/synpu/" target="_blank" rel="noopener">
           <span class="tile-index"><i></i><span class="index-text">04 / S<span class="pixel-i"><span class="sr-only">İ</span></span>STEM</span></span>
@@ -599,15 +681,21 @@
           </span>
         </a>
 
-        <a class="tile" href="https://batuhansavas-yilmaz.github.io/qrgenweb/" target="_blank" rel="noopener">
+        <div class="tile">
           <span class="tile-index"><i></i>05 / QR</span>
           <span class="icon-box"><img src="assets/qrgen.svg" alt="QrGen uygulama ikonu"></span>
           <span class="app-label">QrGen</span>
           <span class="tile-desc">QR kod oluştur, tara, paylaş.</span>
-          <span class="tile-open">Uygulamayı aç
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
-          </span>
-        </a>
+          <div class="tile-actions">
+            <a class="tile-open" href="https://batuhansavas-yilmaz.github.io/qrgenweb/" target="_blank" rel="noopener">Webde aç
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+            </a>
+            <a class="tile-open" href="https://play.google.com/store/apps/details?id=com.bsavasy.qr" target="_blank" rel="noopener">
+              <svg class="android-mark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.86-.29-.15-.66-.04-.82.26L16.4 9.03C14.98 8.36 13.34 8 11.5 8s-3.48.36-4.9 1.03L4.64 5.69c-.16-.3-.53-.42-.82-.26-.3.17-.42.55-.26.86L5.4 9.48C3.09 10.8 1.5 13.13 1.5 15.81h20c0-2.68-1.59-5.01-3.9-6.33zM6.5 12.75c-.41 0-.75-.34-.75-.75s.34-.75.75-.75.75.34.75.75-.34.75-.75.75zm10 0c-.41 0-.75-.34-.75-.75s.34-.75.75-.75.75.34.75.75-.34.75-.75.75z"/></svg>
+              Android app
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -634,6 +722,7 @@
   document.addEventListener("pointerdown", (event) => {
     const host = event.target.closest(".icon-box, .btn-ripple");
     if (!host) return;
+    if (host.classList.contains("icon-box") && !host.closest("a")) return;
     const rect = host.getBoundingClientRect();
     const size = Math.max(rect.width, rect.height) * 2.1;
     const ripple = document.createElement("span");
