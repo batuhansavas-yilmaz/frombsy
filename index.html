@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <title>From B.S.Y.</title>
 <meta name="description" content="From B.S.Y. — Hayatı Kolaylaştıran Ürünler">
 <meta name="color-scheme" content="dark light">
@@ -729,6 +729,51 @@
     host.appendChild(ripple);
     ripple.addEventListener("animationend", () => ripple.remove());
   }, { passive: true });
+  (function () {
+    if (!window.matchMedia || !window.matchMedia('(pointer: coarse)').matches) return;
+    const editableSelector = 'input, textarea, select, [contenteditable="true"], .selectable';
+    const pinchSelector = '.cropper-container';
+    const isEditable = (target) => target instanceof Element && target.closest(editableSelector);
+    const isPinchAllowed = (target) => target instanceof Element && target.closest(pinchSelector);
+
+    const stopGesture = (event) => {
+      if (!isPinchAllowed(event.target)) event.preventDefault();
+    };
+    ['gesturestart', 'gesturechange', 'gestureend'].forEach((type) => {
+      document.addEventListener(type, stopGesture, { passive: false });
+    });
+
+    document.addEventListener('touchmove', (event) => {
+      if (event.touches.length > 1 && !isPinchAllowed(event.target)) event.preventDefault();
+    }, { passive: false });
+
+    let lastTouchEnd = 0;
+    document.addEventListener('touchend', (event) => {
+      if (event.touches.length > 0 || isPinchAllowed(event.target)) return;
+      const interactive = event.target instanceof Element &&
+        event.target.closest('button, a, label, input, textarea, select, [role="button"], [contenteditable="true"], .selectable');
+      if (interactive) return;
+      const now = Date.now();
+      if (now - lastTouchEnd < 320) event.preventDefault();
+      lastTouchEnd = now;
+    }, { passive: false });
+
+    document.addEventListener('contextmenu', (event) => {
+      if (isEditable(event.target)) return;
+      event.preventDefault();
+    });
+
+    document.addEventListener('selectstart', (event) => {
+      if (isEditable(event.target)) return;
+      event.preventDefault();
+    });
+
+    document.addEventListener('dragstart', (event) => {
+      if (isEditable(event.target)) return;
+      event.preventDefault();
+    });
+  })();
+
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' }).catch(() => {});
   }
